@@ -1,0 +1,85 @@
+.div{
+    text-align: center
+}
+
+*{
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+  }
+  body{
+    background: url(https://i.imgur.com/MQB99sg.jpg) #a9b89e;
+    font-family:Arial;
+    font-size:12px;
+    color:#C4BCB0;
+  }
+  input[type="text"],
+  input[type="password"]{
+    background:#EAE6E1;
+    border:0;
+    font-weight:bold;
+    padding:10px;
+    border-radius:3px;
+    width:100%;
+    margin:5px 0;
+    outline:medium none;
+    color:#838383;
+  }
+
+  input[type="button"]{
+    display:block;
+    padding:10px;
+    background:#50BFA4;
+    border:0;
+    border-radius:3px;
+    font-weight:bold;
+    width:100%;
+    color:#fff;
+    cursor:pointer;
+    -webkit-transition:all 0.3s;
+    -moz-transition:all 0.3s;
+    transition:all 0.3s;
+  }
+  input[type="button"]:hover{
+    background:#58CCB0;
+  }
+  form{
+    width:350px;
+    margin: 100px auto;
+    padding:50px;
+    border: 1px solid rgba(0,0,0,0.1);
+   
+    background:#fff;
+  }
+
+  .form > label{
+    display:block;
+    margin:10px 0 15px;
+    line-height:15px;
+    cursor:pointer;
+  }
+  .form > div{
+    margin-top:20px;
+  }
+  a{
+    color:#C4BCB0;
+    text-decoration:none;
+    text-align: right;
+  }
+ 
+  .form > div >a{
+    border:1px solid #3DA087;
+    display:inline-block;
+    border-radius:3px;
+    color:#3DA087;
+    font-weight:bold;
+    padding:7px 15px;
+    margin-left:165px;
+    -webkit-transition:all 0.3s;
+    -moz-transition:all 0.3s;
+    transition:all 0.3s;
+  }
+  .form > div >a:hover{
+    background:#3DA087;
+    color:#fff;
+  }

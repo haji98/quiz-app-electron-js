@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<header>
+    <title>System Management</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../common/css/bootstrap.min.css">
+    <link href="./index.css" rel="stylesheet">
+</header>
+
+<body>
+    <container class="main">
+        <section class="left-panel">
+            <div class="avatar-panel">
+                <image class="avatar" src="../../common/img/avatar.png" )>
+                </image>
+                <h4 class="main-name"></h4>
+                <h6 class="second-name"></h6>
+            </div>
+            <ul class="tabList tabwin sidebar">
+                <li><a href="#tab1" class="tabLink">Course</a></li>
+                <li><a href="#tab2">Questions & Answers</a></li>
+                <li><a href="#tab3" class="report">Report</a></li>
+                <li><a href="#tab4" class="logout">Logout</a></li>
+            </ul>
+        </section>
+        <section class="content">
+            <div class="tabCt">
+                <!-- All Courses -->
+                <article id="tab1" class="tabMn">
+                    <!-- Table course -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center">All Courses</h1>
+                                <!-- Search button -->
+                                <div class="search-inline">
+                                    <div class="search-container">
+                                        <div class="search-icon-btn">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                        <div class="search-input">
+                                            <input type="text" class="search-bar" required placeholder="Search course...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Search button -->
+                                <button class="btn btn-info pull-right new-btn" data-toggle="modal" data-target="#addModal">&#10011 Add a new Course</button>
+                                <div class="alert alert-success fade in" role="alert" data-alert="alert">
+                                    <h4>
+                                        <p id="alertCourse"></p>
+                                    </h4>
+                                </div>
+                                <table class="table table-bordered myTable">
+                                    <tr class="text-center">
+                                        <th hidden>ID</th>
+                                        <th>Name Course</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Time</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tbody class="data">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Modal-->
+                    <div class="modal fade" id="addModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Add New Course</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Name :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" type="text" required placeholder="Enter Name of Course" id="name" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Description :</label>
+                                                <div class="col-sm-3">
+                                                    <textarea class="form-control" rows="4" cols="50" id="descript"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Status :</label>
+                                                <div class="col-sm-3 radio">
+                                                    <input type="checkbox" id="valid" />
+                                                    <label for="valid">Active</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Time :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" type="number" required placeholder="Enter Time of Course" id="total_time" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success saveb" type="button" onclick="save()" data-dismiss="modal">Save</button>
+                                    <button class="btn btn-default closeb" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Modal-->
+                    <div class="modal fade" id="editModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Edit Course</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Name :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" required type="text" id="nname" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Description :</label>
+                                                <div class="col-sm-3">
+                                                    <textarea class="form-control" rows="4" cols="50" id="ndescript"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Status :</label>
+                                                <div class="col-sm-3 radio">
+                                                    <input type="checkbox" id="nvalid" />
+                                                    <label for="nvalid">Active</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Time :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" required type="number" id="ntotal_time" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="updatebtn" class="btn btn-success" id="save-edit-btn" type="button" data-dismiss="modal">Save</button>
+                                    <button class="btn btn-default" id="save-close-btn" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete Modal-->
+                    <div class="modal fade" id="deleteModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Delete Course</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Are you sure you want to delete this course?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="deletebtn" class="btn btn-danger yesbutton" type="button" data-dismiss="modal">Yes</button>
+                                    <button class="btn btn-primary cancelbutton" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Questions -->
+                <article id="tab2" class="tabMn">
+                    <!-- Table course -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center">Questions</h1>
+
+                                <!-- Combobox -->
+                                <div class="combobox">
+                                    <header>
+                                        <input type="text" placeholder="Select One Course" />
+                                        <button><i class="fa fa-navicon"></i></button>
+                                    </header>
+                                    <ul class="course">
+                                    </ul>
+                                </div>
+                                <!-- End Combobox -->
+                                <button class="btn btn-info pull-right new-btn" data-toggle="modal" data-target="#addQuestion">&#10011 Add a new Question</button>
+                                <div class="alert alert-success fade in myAlert" ng-if="alertMassege"><a class="close" href="#" data-dismiss="alert" ng-click="clickedAlert()">X</a>
+                                    <h4>
+                                        <p id="alertQuestion"></p>
+                                    </h4>
+                                </div>
+                                <table class="table table-bordered myTable">
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>Content</th>
+                                        <th>Category</th>
+                                        <th>Type</th>
+                                    </tr>
+                                    <tbody class="question">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Modal-->
+                    <div class="modal fade" id="addQuestion" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Add New Question</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Content :</label>
+                                                <div class="col-sm-3">
+                                                    <textarea class="form-control" rows="4" cols="50" id="qcontent" placeholder="Enter Content of question"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Category :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" type="text" required placeholder="Enter Category" id="qcategory" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Type :</label>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" id="type">
+                                                <option value="single">Single</option>
+                                                <option value="multi">Multi</option>
+                                            </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Course :</label>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" id="course">
+                                            </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success saveb" type="button" onclick="createQuestion()" data-dismiss="modal">Create</button>
+                                    <button class="btn btn-default closeb" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Answer Modal-->
+                    <div class="modal fade" id="answerModel" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Answers of Question</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Question :</label>
+                                                <label class="control-label col-sm-4" id="question"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Answer :</label>
+                                            </div>
+                                            <div class="form-group" id="qanswer">
+                                                <table class="table table-borderless">
+                                                    <tbody class="theAnswer">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteQuestion">Delete</button>
+                                    <button class="btn btn-primary" id="answerbtn" data-toggle="modal" type="button" data-target="#addAnswer">Add Answer</button>
+                                    <button class="btn btn-info" id="correctanswer" type="button">Save</button>
+                                    <button class="btn btn-success" id="edit-question-btn" data-toggle="modal" type="button" data-target="#editQuestion">Edit</button>
+                                    <button class="btn btn-default" id="save-close-btn" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Modal-->
+                    <div class="modal fade" id="editQuestion" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Edit Question</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Content :</label>
+                                                <div class="col-sm-3">
+                                                    <textarea class="form-control" rows="4" cols="50" id="nqcontent"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Category :</label>
+                                                <div class="col-sm-3">
+                                                    <input class="form-control" required type="text" id="nqcategory" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Type :</label>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" id="ntype">
+                                                    <option value="single">single</option>
+                                                    <option value="multi">multi</option>
+                                                </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Course :</label>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" id="ncourse"></select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="updatequestionbtn" class="btn btn-success" id="save-edit-btn" type="button" data-dismiss="modal">Save</button>
+                                    <button class="btn btn-default" id="save-close-btn" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Answer-->
+                    <div class="modal fade" id="addAnswer" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Add the answer for question</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Answer :</label>
+                                                <div id="contenedor">
+                                                    <div class="added">
+                                                        <input type="text" id="addanswer" name="addanswer" required placeholder="Enter the answer" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="addAnswerbtn" class="btn btn-success" type="button" data-dismiss="modal">Add</button>
+                                    <button class="btn btn-default" id="save-close-btn" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit Answer-->
+                    <div class="modal fade" id="editAnswer" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Edit Answer</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2">Answer :</label>
+                                                <div id="contenedor">
+                                                    <div class="added">
+                                                        <input type="text" id="answer" required name="answer" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="saveAnswer" class="btn btn-success" type="button" data-dismiss="modal">Save</button>
+                                    <button class="btn btn-default" id="save-close-btn" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete Modal-->
+                    <div class="modal fade" id="deleteQuestion" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Delete Question</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Are you sure you want to delete this question?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="deletequestionbtn" class="btn btn-danger yesbutton" type="button" data-dismiss="modal">Yes</button>
+                                    <button class="btn btn-primary cancelbutton" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete Answer-->
+                    <div class="modal fade" id="deleteAnswer" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Delete This Answer</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Are you sure you want to delete this answer?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="deleteanswerbtn" class="btn btn-danger yesbutton" type="button" data-dismiss="modal">Yes</button>
+                                    <button class="btn btn-primary cancelbutton" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article id="tab3" class="tabMn">
+                    <!-- Table course -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center">Report</h1>
+                            </div>
+                        </div>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </container>
+</body>
+
+<!-- Optional JavaScript -->
+<script src="../../common/js/jquery-3.4.1.slim.min.js"></script>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../common/js/bootstrap.min.js"></script>
+<script src="../../node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="../../common/js/Chart.min.js"></script>
+<script src="./index.js"></script>
+
+</html>

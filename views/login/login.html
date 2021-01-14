@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.css">
+    
+</head>
+<body>
+    <h2 style="text-align: center">Login</h2>
+    <form action="POST" >
+        <div class="form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <br>
+            <input type="button" value="Login" onclick="login()">
+            <label id="display" style="color: red; text-align:right"></label>
+            <div><a id="link">Register</a></div>
+        </div>
+    </form>
+</body>
+<script  src="./login.js"></script>
+</html>
